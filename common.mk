@@ -32,6 +32,10 @@ $(call inherit-product, vendor/sony/sm8350-common/sm8350-common-vendor.mk)
 # VNDK
 PRODUCT_SHIPPING_API_LEVEL := 30
 
+PRODUCT_COPY_FILES += \
+    prebuilts/vndk/v32/arm64/arch-arm-armv8-a/shared/vndk-sp/libutils.so:$(TARGET_COPY_OUT_VENDOR)/lib/libutils-v32.so \
+    prebuilts/vndk/v32/arm64/arch-arm64-armv8-a/shared/vndk-sp/libutils.so:$(TARGET_COPY_OUT_VENDOR)/lib64/libutils-v32.so
+
 # Additional native libraries
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/public.libraries.txt:$(TARGET_COPY_OUT_VENDOR)/etc/public.libraries.txt
@@ -446,6 +450,11 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.light-V1-ndk_platform.vendor \
     android.hidl.base@1.0.vendor
+
+# Sony device library
+PRODUCT_PACKAGES += \
+    com.sony.device \
+    com.sony.idd_dummy
 
 # Telephony
 PRODUCT_PACKAGES += \
